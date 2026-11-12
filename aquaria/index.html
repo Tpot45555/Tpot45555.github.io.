@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquaria — Enrique Christensen</title><meta name="description" content="Aquaria: un terrario de civilizaciones en 3D que corre en el navegador.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2B2D30;--ink2:#313336;--silver:#F2F2EF;--dim:#D6D7D4;--slate:#A9ACAE;--deep:#8C8F92;--acc:#F28C28;--acc2:#F5A552;--line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.24)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background-color:var(--ink);color:var(--silver);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;
+background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:120px 120px}
+a{color:inherit;text-decoration:none}.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+nav .brand{font-weight:400;letter-spacing:.3em;text-transform:uppercase;font-size:.9rem}nav .brand b{color:var(--acc);font-weight:400}
+nav a.mono:hover{color:var(--silver)}
+header{padding:clamp(48px,9vh,96px) 0 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;margin-bottom:22px}.eyebrow::before{content:"";width:26px;height:1px;background:var(--acc)}
+h1{font-weight:200;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.02em}
+h1 i,h2 i{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--acc2)}
+.lead{max-width:40em;margin-top:22px;color:var(--slate);font-size:1.12rem}
+.btns{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px;align-items:center}
+.btn{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--acc);transition:color .25s,letter-spacing .3s}
+.btn:hover{color:var(--acc);letter-spacing:.3em}.btn.q{border-color:transparent;color:var(--slate)}.btn.q:hover{color:var(--silver)}
+.shot{margin:26px 0 10px;border:1px solid var(--line2);border-radius:3px;overflow:hidden;background:var(--bg,#0b0f14)}.shot img{display:block;width:100%;height:auto}
+.cap{margin-bottom:50px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+h2{font-weight:200;font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.02em;margin-bottom:26px}
+section>p{max-width:46em;color:var(--slate);margin-bottom:14px}section>p b{color:var(--dim);font-weight:400}
+.row{display:grid;grid-template-columns:44px 1fr 1.5fr;gap:18px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+.row:last-child{border-bottom:1px solid var(--line)}.row .n{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--acc);font-size:1.2rem}
+.row h3{font-weight:400;font-size:1.08rem}.row p{color:var(--slate);font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px}.tags span{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line2);padding:6px 11px;border-radius:2px;color:var(--dim)}
+ol{margin-left:1.2em;color:var(--slate);max-width:46em}ol li{margin-bottom:8px}code{font-family:'JetBrains Mono',monospace;font-size:.84em;background:var(--ink2);border:1px solid var(--line);padding:1px 6px;border-radius:3px;color:var(--dim)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+@media(max-width:720px){.row{grid-template-columns:30px 1fr}.row p{grid-column:2}}
+</style></head><body><div class="wrap">
+<nav><a class="brand" href="../">Enrique<b>·</b>C</a><a class="mono" href="../">← Portafolio</a></nav>
+<header><span class="mono eyebrow">Juego · Simulación</span><h1>Aquaria, <i>terrario de civilizaciones.</i></h1><p class="lead">Un mundo en miniatura dentro de una caja de cristal. Las sociedades nacen, se expanden, comercian y se hacen la guerra por su cuenta; tú miras, y de vez en cuando lanzas un meteorito.</p><div class="btns"><a class="btn" href="juego/">Jugar ahora →</a><a class="btn q" href="https://github.com/Tpot45555/Tpot45555.github.io./tree/main/aquaria" target=_blank rel=noopener>Ver el código en GitHub</a><a class="btn q" href="../">← Volver al portafolio</a></div></header>
+<div class="shot" style="--bg:#070b11"><img src="mapa.webp" alt="Mapa del mundo de Aquaria"></div><p class="mono cap">El mapa: una isla de bloques con sus capitales</p>
+<section><h2>Qué <i>es.</i></h2><p><b>Aquaria</b> es una simulación que corre en el navegador: una isla en bloques, con montañas, bosques, estaciones y fauna, habitada por varias sociedades con formas de gobierno distintas.</p><p>Es un terrario donde todo está conectado. No controlas a nadie directamente: observas cómo evoluciona el mundo y puedes intervenir con poderes.</p></section>
+<section><h2>Qué <i>hace.</i></h2><div class="row"><span class="n">i</span><h3>Sociedades vivas</h3><p>Cada una tiene su gobierno (democracia, teocracia, imperio militar, tecnocracia y más), expande fronteras, funda ciudades y avanza de era.</p></div><div class="row"><span class="n">ii</span><h3>Líderes</h3><p>Cada sociedad tiene un líder con personalidad que envejece y muere; su sucesor puede cambiarlo todo.</p></div><div class="row"><span class="n">iii</span><h3>Diplomacia y guerra</h3><p>Las relaciones suben con el comercio y bajan con incidentes o fronteras tensas; de ahí nacen alianzas y guerras.</p></div><div class="row"><span class="n">iv</span><h3>Mundo conectado</h3><p>La peste viaja por las rutas, los incendios se propagan en verano, los refugiados huyen y las ciudades descontentas cambian de bando.</p></div><div class="row"><span class="n">v</span><h3>Naturaleza</h3><p>Pasan las estaciones, los animales pastan, los lobos cazan y los bosques crecen.</p></div><div class="row"><span class="n">vi</span><h3>Poderes</h3><p>Meteorito, rayo, fuego, lluvia, terremoto, volcán, peste, bendición, inspiración, revuelta y más.</p></div><div class="row"><span class="n">vii</span><h3>Crónica</h3><p>Un registro de lo que va pasando en el mundo, año por año.</p></div></section>
+<section><h2>Con qué <i>está hecho.</i></h2><div class="tags"><span>JavaScript</span><span>three.js</span><span>WebGL</span><span>HTML</span><span>CSS</span></div></section>
+<section><h2>Cómo <i>usarlo.</i></h2><ol><li>Pulsa <b>Jugar ahora</b>: corre directo en el navegador, sin instalar nada.</li><li>Arrastra para girar el terrario y usa la rueda para acercarte.</li><li>Cambia la velocidad arriba, funda una sociedad nueva o suelta un poder desde la barra inferior.</li></ol></section>
+<footer><span class="mono">© 2026 Enrique Christensen</span><span class="mono"><a href="../">Portafolio</a> · <a href="https://github.com/Tpot45555" target="_blank" rel="noopener">GitHub</a></span></footer>
+</div></body></html>
