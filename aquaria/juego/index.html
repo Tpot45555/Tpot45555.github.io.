@@ -1211,6 +1211,19 @@ window.AQ={focus:(x,z,zm)=>focusOn(new V3(x,2,z),zm),setSpeed,get civs(){return 
 resize();newWorld(true);setSpeed(1);frame();
 document.fonts&&document.fonts.ready.then(drawPlate);
 setTimeout(()=>{$('#hintbar').style.opacity=0},9000);
+
+/* ---- modo vitrina (?vitrina=1): solo el terrario, girando solo, sin interfaz ---- */
+if(new URLSearchParams(location.search).has('vitrina')){
+  const st=document.createElement('style');
+  st.textContent='.vitrina #app{grid-template-columns:1fr!important;grid-template-rows:1fr!important}'
+    +'.vitrina #panel,.vitrina .topbar,.vitrina #powers,.vitrina .hintbar,.vitrina #toasts,.vitrina .modal{display:none!important}'
+    +'.vitrina canvas#c{pointer-events:none}.vitrina .vig{background:radial-gradient(ellipse at 50% 45%,transparent 58%,rgba(0,0,0,.55))}';
+  document.head.appendChild(st);
+  document.documentElement.classList.add('vitrina');
+  controls.autoRotate=true; controls.autoRotateSpeed=.55;        // la pecera gira sola, despacio
+  setSpeed(2);
+  requestAnimationFrame(()=>{resize();controls.update()});
+}
 </script>
 </body>
 </html>

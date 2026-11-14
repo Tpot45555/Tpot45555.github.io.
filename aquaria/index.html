@@ -33,13 +33,39 @@ section>p{max-width:46em;color:var(--slate);margin-bottom:14px}section>p b{color
 ol{margin-left:1.2em;color:var(--slate);max-width:46em}ol li{margin-bottom:8px}code{font-family:'JetBrains Mono',monospace;font-size:.84em;background:var(--ink2);border:1px solid var(--line);padding:1px 6px;border-radius:3px;color:var(--dim)}
 footer{border-top:1px solid var(--line);padding:30px 0 50px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
 @media(max-width:720px){.row{grid-template-columns:30px 1fr}.row p{grid-column:2}}
+
+.live{position:relative;aspect-ratio:16/9;margin:26px 0 10px;border:1px solid var(--line2);border-radius:3px;overflow:hidden;background:var(--bg,#070b11)}
+.live img,.live iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
+.live img{object-fit:cover;transition:opacity .9s ease}
+.live.on img{opacity:0}
+.live .play{position:absolute;right:14px;bottom:14px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--silver);background:rgba(10,14,18,.72);border:1px solid var(--line2);padding:9px 15px;border-radius:999px;backdrop-filter:blur(6px);transition:all .25s}
+.live .play:hover{color:var(--acc);border-color:var(--acc)}
 </style></head><body><div class="wrap">
 <nav><a class="brand" href="../">Enrique<b>·</b>C</a><a class="mono" href="../">← Portafolio</a></nav>
 <header><span class="mono eyebrow">Juego · Simulación</span><h1>Aquaria, <i>terrario de civilizaciones.</i></h1><p class="lead">Un mundo en miniatura dentro de una caja de cristal. Las sociedades nacen, se expanden, comercian y se hacen la guerra por su cuenta; tú miras, y de vez en cuando lanzas un meteorito.</p><div class="btns"><a class="btn" href="juego/">Jugar ahora →</a><a class="btn q" href="https://github.com/Tpot45555/Tpot45555.github.io./tree/main/aquaria" target=_blank rel=noopener>Ver el código en GitHub</a><a class="btn q" href="../">← Volver al portafolio</a></div></header>
-<div class="shot" style="--bg:#070b11"><img src="mapa.webp" alt="Mapa del mundo de Aquaria"></div><p class="mono cap">El mapa: una isla de bloques con sus capitales</p>
+<div class="live" id="live" style="--bg:#070b11">
+  <img id="poster" src="mapa.webp" alt="Mapa del mundo de Aquaria">
+  <a class="play" href="juego/">Jugar ahora ↗</a>
+</div><p class="mono cap">El terrario, en marcha: el mundo sigue vivo mientras lo miras</p>
 <section><h2>Qué <i>es.</i></h2><p><b>Aquaria</b> es una simulación que corre en el navegador: una isla en bloques, con montañas, bosques, estaciones y fauna, habitada por varias sociedades con formas de gobierno distintas.</p><p>Es un terrario donde todo está conectado. No controlas a nadie directamente: observas cómo evoluciona el mundo y puedes intervenir con poderes.</p></section>
 <section><h2>Qué <i>hace.</i></h2><div class="row"><span class="n">i</span><h3>Sociedades vivas</h3><p>Cada una tiene su gobierno (democracia, teocracia, imperio militar, tecnocracia y más), expande fronteras, funda ciudades y avanza de era.</p></div><div class="row"><span class="n">ii</span><h3>Líderes</h3><p>Cada sociedad tiene un líder con personalidad que envejece y muere; su sucesor puede cambiarlo todo.</p></div><div class="row"><span class="n">iii</span><h3>Diplomacia y guerra</h3><p>Las relaciones suben con el comercio y bajan con incidentes o fronteras tensas; de ahí nacen alianzas y guerras.</p></div><div class="row"><span class="n">iv</span><h3>Mundo conectado</h3><p>La peste viaja por las rutas, los incendios se propagan en verano, los refugiados huyen y las ciudades descontentas cambian de bando.</p></div><div class="row"><span class="n">v</span><h3>Naturaleza</h3><p>Pasan las estaciones, los animales pastan, los lobos cazan y los bosques crecen.</p></div><div class="row"><span class="n">vi</span><h3>Poderes</h3><p>Meteorito, rayo, fuego, lluvia, terremoto, volcán, peste, bendición, inspiración, revuelta y más.</p></div><div class="row"><span class="n">vii</span><h3>Crónica</h3><p>Un registro de lo que va pasando en el mundo, año por año.</p></div></section>
 <section><h2>Con qué <i>está hecho.</i></h2><div class="tags"><span>JavaScript</span><span>three.js</span><span>WebGL</span><span>HTML</span><span>CSS</span></div></section>
 <section><h2>Cómo <i>usarlo.</i></h2><ol><li>Pulsa <b>Jugar ahora</b>: corre directo en el navegador, sin instalar nada.</li><li>Arrastra para girar el terrario y usa la rueda para acercarte.</li><li>Cambia la velocidad arriba, funda una sociedad nueva o suelta un poder desde la barra inferior.</li></ol></section>
 <footer><span class="mono">© 2026 Enrique Christensen</span><span class="mono"><a href="../">Portafolio</a> · <a href="https://github.com/Tpot45555" target="_blank" rel="noopener">GitHub</a></span></footer>
-</div></body></html>
+</div><script>
+// El terrario se carga solo cuando entra en pantalla, y se queda en la imagen si el equipo pide menos movimiento.
+(function(){
+  var box=document.getElementById('live');
+  if(!box||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(!e.isIntersecting||box.dataset.on) return; box.dataset.on=1; io.disconnect();
+    var f=document.createElement('iframe');
+    f.src='juego/?vitrina=1'; f.title='Aquaria en marcha'; f.loading='lazy'; f.setAttribute('scrolling','no'); f.tabIndex=-1; f.setAttribute('aria-hidden','true');
+    f.onload=function(){ setTimeout(function(){ box.classList.add('on'); },900); };
+    box.insertBefore(f,box.firstChild);
+  }); },{rootMargin:'200px'});
+  io.observe(box);
+})();
+</script>
+</body></html>
